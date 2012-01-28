@@ -290,6 +290,53 @@ class Dnsmasq extends Daemon
     }
 
     /**
+     * Enables a default DHCP range on specified interface.
+     *
+     * @param string $iface interface
+     *
+     * @return void
+     * @throws EngineException
+     */
+
+    function add_subnet_default($iface)
+    {
+        clearos_profile(__METHOD__, __LINE__);
+
+        Validation_Exception::is_valid($this->validate_interface($iface));
+
+        $eth_info = new Iface($iface);
+
+        $ip = $eth_info->get_live_ip();
+        $netmask = $eth_info->get_live_netmask();
+
+        $network = Network_Utils::get_network_address($ip, $netmask);
+        $broadcast = Network_Utils::get_broadcast_address($ip, $netmask);
+
+        // Add some intelligent defaults
+        $long_nw = ip2long($network);
+        $long_bc = ip2long($broadcast);
+        $start = long2ip($long_bc - round(($long_bc - $long_nw )* 3 / 5,0) - 2);
+        $end = long2ip($long_bc - 1);
+
+        $this->add_subnet(
+            $iface,
+            $start,
+            $end,
+            self::DEFAULT_LEASETIME,
+            $ip,
+            array($ip)
+        );
+
+        if ($this->get_running_state())
+            $this->reset(FLASE);
+        else 
+            $this->set_running_state(TRUE);
+
+        if (! $this->get_boot_state())
+            $this->set_boot_state(TRUE);
+    }
+
+    /**
      * Deletes a lease from DHCP server.
      *
      * @param string $mac MAC address
