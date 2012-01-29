@@ -215,6 +215,7 @@ class Subnets extends ClearOS_Controller
                         $subnet['tftp'],
                         $subnet['ntp']
                     );
+
                 } else {
                     $this->dnsmasq->update_subnet(
                         $iface,
@@ -229,7 +230,8 @@ class Subnets extends ClearOS_Controller
                     );
                 }
 
-                $this->dnsmasq->reset(TRUE);
+                // Do a full restart for DHCP
+                $this->dnsmasq->restart(TRUE);
 
                 // Return to summary page with status message
                 $this->page->set_status_added();

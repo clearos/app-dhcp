@@ -327,10 +327,12 @@ class Dnsmasq extends Daemon
             array($ip)
         );
 
-        if ($this->get_running_state())
-            $this->reset(FLASE);
-        else 
+        if ($this->get_running_state()) {
+            // Do a full reset when enabling DHCP
+            $this->restart();
+        } else {
             $this->set_running_state(TRUE);
+        }
 
         if (! $this->get_boot_state())
             $this->set_boot_state(TRUE);

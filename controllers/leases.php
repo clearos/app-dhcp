@@ -48,33 +48,14 @@
 class Leases extends ClearOS_Controller
 {
     /**
-     * DHCP server overview.
+     * Leases summary report.
      *
      * @return view
      */
 
     function index()
     {
-        // Load libraries
-        //---------------
-
-        $this->load->library('dhcp/Dnsmasq');
-        $this->lang->load('dhcp');
-
-        // Load view data
-        //---------------
-
-        try {
-            $data['leases'] = $this->dnsmasq->get_leases();
-        } catch (Exception $e) {
-            $this->page->view_exception($e);
-            return;
-        }
- 
-        // Load views
-        //-----------
-
-        $this->page->view_form('dhcp/leases/summary', $data, lang('dhcp_leases'));
+        $this->_summary('simple');
     }
 
     /**
@@ -226,5 +207,54 @@ class Leases extends ClearOS_Controller
             $this->page->view_exception($e);
             return;
         }
+    }
+
+    /**
+     * Detailed report view.
+     *
+     * @return view
+     */
+
+    function report()
+    {
+        $this->_summary('detailed');
+    }
+
+    /**
+     * DHCP leases report view.
+     *
+     * @param string $report_type report type
+     *
+     * @return view
+     */
+
+    function _summary($report_type)
+    {
+        // Load libraries
+        //---------------
+
+        $this->load->library('dhcp/Dnsmasq');
+        $this->lang->load('dhcp');
+
+        // Load view data
+        //---------------
+
+        try {
+            $data['report_type'] = $report_type;
+            $data['leases'] = $this->dnsmasq->get_leases();
+        } catch (Exception $e) {
+            $this->page->view_exception($e);
+            return;
+        }
+ 
+        if ($report_type === 'detailed')
+            $options['type'] = MY_Page::TYPE_REPORT;
+        else
+            $options = array();
+
+        // Load views
+        //-----------
+
+        $this->page->view_form('dhcp/leases/summary', $data, lang('dhcp_leases'), $options);
     }
 }

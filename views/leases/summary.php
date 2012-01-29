@@ -40,19 +40,37 @@ $this->lang->load('dhcp');
 // Headers
 ///////////////////////////////////////////////////////////////////////////////
 
-$headers = array(
-   lang('network_ip'),
-   lang('network_mac_address'),
-   lang('network_hostname'),
-   lang('dhcp_vendor'),
-   lang('dhcp_expires')
-);
+if ($report_type === 'detailed') {
+    $headers = array(
+       lang('network_ip'),
+       lang('network_mac_address'),
+       lang('network_hostname'),
+       lang('dhcp_vendor'),
+       lang('dhcp_expires')
+    );
+} else {
+    $headers = array(
+       lang('network_ip'),
+       lang('network_mac_address'),
+       lang('network_hostname'),
+    );
+}
 
 ///////////////////////////////////////////////////////////////////////////////
 // Anchors 
 ///////////////////////////////////////////////////////////////////////////////
 
-$anchors = array(anchor_add('/app/dhcp/leases/add'));
+if ($report_type === 'detailed') {
+    $anchors = array(
+        anchor_cancel('/app/dhcp/leases'),
+        anchor_add('/app/dhcp/leases/add')
+    );
+} else {
+    $anchors = array(
+        anchor_custom('/app/dhcp/leases/report', lang('base_detailed_report')),
+        anchor_add('/app/dhcp/leases/add')
+    );
+}
 
 ///////////////////////////////////////////////////////////////////////////////
 // Items
@@ -67,8 +85,8 @@ foreach ($leases as $key => $details) {
     else
         $order_date = "<span style='display: none'>" . $details['end'] . "</span>" . strftime('%c', $details['end']);
 
-    if (strlen($details['vendor']) > 20)
-        $vendor = substr($details['vendor'], 0, 20) . "...";
+    if (strlen($details['vendor']) > 15)
+        $vendor = substr($details['vendor'], 0, 15) . "...";
     else
         $vendor = $details['vendor'];
 
@@ -80,13 +98,22 @@ foreach ($leases as $key => $details) {
             anchor_delete('/app/dhcp/leases/delete/' . $key, 'low')
         )
     );
-    $item['details'] = array(
-        $order_ip,
-        $details['mac'],
-        $details['hostname'],
-        $vendor,
-        $order_date,
-    );
+
+    if ($report_type === 'detailed') {
+        $item['details'] = array(
+            $order_ip,
+            $details['mac'],
+            $details['hostname'],
+            $vendor,
+            $order_date,
+        );
+    } else {
+        $item['details'] = array(
+            $order_ip,
+            $details['mac'],
+            $details['hostname']
+        );
+    }
 
     $items[] = $item;
 }
