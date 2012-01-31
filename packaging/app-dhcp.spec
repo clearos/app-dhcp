@@ -1,13 +1,11 @@
 
 Name: app-dhcp
-Group: ClearOS/Apps
 Epoch: 1
-Version: 1.0.1
+Version: 1.0.2
 Release: 1%{dist}
 Summary: DHCP Server
 License: GPLv3
-Packager: ClearFoundation
-Vendor: ClearFoundation
+Group: ClearOS/Apps
 Source: %{name}-%{version}.tar.gz
 Buildarch: noarch
 Requires: %{name}-core = 1:%{version}-%{release}
@@ -19,8 +17,8 @@ The DHCP (Dynamic Host Configuration Protocol) Server provides automatic IP sett
 
 %package core
 Summary: DHCP Server - APIs and install
-Group: ClearOS/Libraries
 License: LGPLv3
+Group: ClearOS/Libraries
 Requires: app-base-core
 Requires: app-network-core
 Requires: dhcping
