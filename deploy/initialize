@@ -62,4 +62,3 @@ $default = $domain->get_default();
 
 $dnsmasq = new Dnsmasq();
 $dnsmasq->set_domain_name($default);
-echo "dude $default\n";
