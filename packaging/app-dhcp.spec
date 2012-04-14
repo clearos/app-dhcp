@@ -1,7 +1,7 @@
 
 Name: app-dhcp
 Epoch: 1
-Version: 1.0.16
+Version: 1.1.0
 Release: 1%{dist}
 Summary: DHCP Server
 License: GPLv3
@@ -16,7 +16,7 @@ Requires: app-network
 The DHCP (Dynamic Host Configuration Protocol) Server provides automatic IP settings to devices on your network.
 
 %package core
-Summary: DHCP Server - APIs and install
+Summary: DHCP Server - Core
 License: LGPLv3
 Group: ClearOS/Libraries
 Requires: app-base-core
