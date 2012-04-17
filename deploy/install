@@ -8,4 +8,4 @@
 # Initialize domain name with default
 #------------------------------------
 
-/usr/clearos/app/dhcp/deploy/initialize
+/usr/clearos/apps/dhcp/deploy/initialize
