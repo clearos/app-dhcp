@@ -60,5 +60,7 @@ clearos_load_library('network/Domain');
 $domain = new Domain();
 $default = $domain->get_default();
 
-$dnsmasq = new Dnsmasq();
-$dnsmasq->set_domain_name($default);
+if ($default) {
+    $dnsmasq = new Dnsmasq();
+    $dnsmasq->set_domain_name($default);
+}
