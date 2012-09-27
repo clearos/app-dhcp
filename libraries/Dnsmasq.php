@@ -530,19 +530,6 @@ class Dnsmasq extends Daemon
         $leases = array();
         $ip_ndx = array();
 
-        foreach ($static as $mac => $details) {
-            $key = sprintf("%u.%s", ip2long($details['ip']), hexdec(preg_replace("/\:/", "", $mac)));
-            $mac_prefix = strtoupper(substr($mac, 0, 8));
-
-            $leases[$key]['vendor'] = isset($mac_database[$mac_prefix]) ? $mac_database[$mac_prefix] : '';
-            $leases[$key]['mac'] = $mac;
-            $leases[$key]['ip'] = $details['ip'];
-            $leases[$key]['end'] = 0;
-            $leases[$key]['is_active'] = TRUE;
-            $leases[$key]['type'] = self::TYPE_STATIC;
-            $leases[$key]['hostname'] = $details['hostname'];
-        }
-
         foreach ($active as $mac => $details) {
             $key = sprintf("%u.%s", ip2long($details['ip']), hexdec(preg_replace("/\:/", "", $mac)));
             $mac_prefix = strtoupper(substr($mac, 0, 8));
@@ -553,6 +540,19 @@ class Dnsmasq extends Daemon
             $leases[$key]['end'] = $details['end'];
             $leases[$key]['is_active'] = TRUE;
             $leases[$key]['type'] = self::TYPE_DYNAMIC;
+            $leases[$key]['hostname'] = $details['hostname'];
+        }
+
+        foreach ($static as $mac => $details) {
+            $key = sprintf("%u.%s", ip2long($details['ip']), hexdec(preg_replace("/\:/", "", $mac)));
+            $mac_prefix = strtoupper(substr($mac, 0, 8));
+
+            $leases[$key]['vendor'] = isset($mac_database[$mac_prefix]) ? $mac_database[$mac_prefix] : '';
+            $leases[$key]['mac'] = $mac;
+            $leases[$key]['ip'] = $details['ip'];
+            $leases[$key]['end'] = 0;
+            $leases[$key]['is_active'] = TRUE;
+            $leases[$key]['type'] = self::TYPE_STATIC;
             $leases[$key]['hostname'] = $details['hostname'];
         }
 
