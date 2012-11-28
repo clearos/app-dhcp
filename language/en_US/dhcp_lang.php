@@ -13,6 +13,7 @@ $lang['dhcp_end_ip_invalid'] = 'End IP is invalid.';
 $lang['dhcp_expires'] = 'Expires';
 $lang['dhcp_gateway'] = 'Gateway';
 $lang['dhcp_gateway_invalid'] = 'Gateway is invalid.';
+$lang['dhcp_identifier'] = 'Identifier';
 $lang['dhcp_ip_range_end'] = 'IP Range End';
 $lang['dhcp_ip_range_invalid'] = 'IP range is invalid.';
 $lang['dhcp_ip_range_start'] = 'IP Range Start';

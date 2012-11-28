@@ -52,7 +52,7 @@ $expires = ($lease['end'] === 0) ? lang('dhcp_never') : strftime('%c', $lease['e
 echo field_input('end', $expires, lang('dhcp_expires'), TRUE);
 echo field_input('mac', $lease['mac'], lang('network_mac_address'), TRUE);
 echo field_input('vendor', $lease['vendor'], lang('dhcp_vendor'), TRUE);
-echo field_input('hostname', $lease['hostname'], lang('network_hostname'), TRUE);
+echo field_input('hostname', $lease['hostname'], lang('dhcp_identifier'), TRUE);
 echo field_input('ip', $lease['ip'], lang('network_ip'));
 echo field_dropdown('type', $types, $lease['type'], lang('dhcp_lease'));
 

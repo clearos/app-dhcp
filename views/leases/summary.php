@@ -44,7 +44,7 @@ if ($report_type === 'detailed') {
     $headers = array(
        lang('network_ip'),
        lang('network_mac_address'),
-       lang('network_hostname'),
+       lang('dhcp_identifier'),
        lang('dhcp_vendor'),
        lang('dhcp_expires')
     );
@@ -52,7 +52,7 @@ if ($report_type === 'detailed') {
     $headers = array(
        lang('network_ip'),
        lang('network_mac_address'),
-       lang('network_hostname'),
+       lang('dhcp_identifier'),
     );
 }
 
