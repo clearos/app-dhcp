@@ -196,17 +196,7 @@ class Dnsmasq extends Daemon
      * @throws Engine_Exception, Validation_Exception
      */
 
-    public function add_subnet(
-        $interface,
-        $start,
-        $end,
-        $lease_time = self::DEFAULT_LEASETIME,
-        $gateway = NULL,
-        $dns_list = NULL,
-        $wins = NULL,
-        $tftp = NULL,
-        $ntp = NULL
-    )
+    public function add_subnet($interface, $start, $end, $lease_time = self::DEFAULT_LEASETIME, $gateway = NULL, $dns_list = NULL, $wins = NULL, $tftp = NULL, $ntp = NULL)
     {
         clearos_profile(__METHOD__, __LINE__);
 
@@ -315,7 +305,7 @@ class Dnsmasq extends Daemon
         // Add some intelligent defaults
         $long_nw = ip2long($network);
         $long_bc = ip2long($broadcast);
-        $start = long2ip($long_bc - round(($long_bc - $long_nw )* 3 / 5,0) - 2);
+        $start = long2ip($long_bc - round(($long_bc - $long_nw) * 3 / 5, 0) - 2);
         $end = long2ip($long_bc - 1);
 
         $this->add_subnet(

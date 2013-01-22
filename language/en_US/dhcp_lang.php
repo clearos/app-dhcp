@@ -1,5 +1,6 @@
 <?php
-$lang['dhcp_app_description'] = 'The DHCP (Dynamic Host Configuration Protocol) Server provides automatic IP settings to devices on your network.';
+
+$lang['dhcp_app_description'] = 'The DHCP Server app provides automatic IP configuration to devices on your network.';
 $lang['dhcp_app_name'] = 'DHCP Server';
 $lang['dhcp_authoritative'] = 'Authoritative';
 $lang['dhcp_authoritative_state_invalid'] = 'Authoritative state is invalid.';
@@ -29,7 +30,7 @@ $lang['dhcp_never'] = 'Never';
 $lang['dhcp_ntp'] = 'NTP';
 $lang['dhcp_ntp_server_invalid'] = 'NTP server is invalid.';
 $lang['dhcp_start_ip_invalid'] = 'Start IP is invalid.';
-$lang['dhcp_state_invalid'] = 'State is invalid';
+$lang['dhcp_state_invalid'] = 'State is invalid.';
 $lang['dhcp_static_lease'] = 'Static Lease';
 $lang['dhcp_static'] = 'Static';
 $lang['dhcp_subnets'] = 'Subnets';
