@@ -1,7 +1,7 @@
 
 Name: app-dhcp
 Epoch: 1
-Version: 1.4.14
+Version: 1.4.35
 Release: 1%{dist}
 Summary: DHCP Server
 License: GPLv3
@@ -13,7 +13,7 @@ Requires: app-base
 Requires: app-network
 
 %description
-The DHCP (Dynamic Host Configuration Protocol) Server provides automatic IP settings to devices on your network.
+The DHCP Server app provides automatic IP configuration to devices on your network.
 
 %package core
 Summary: DHCP Server - Core
@@ -26,7 +26,7 @@ Requires: dnsmasq >= 2.48
 Requires: iptables
 
 %description core
-The DHCP (Dynamic Host Configuration Protocol) Server provides automatic IP settings to devices on your network.
+The DHCP Server app provides automatic IP configuration to devices on your network.
 
 This package provides the core API and libraries.
 
