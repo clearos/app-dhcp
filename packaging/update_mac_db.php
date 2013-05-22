@@ -8,9 +8,9 @@
  * http://standards.ieee.org/develop/regauth/oui/public.html.
  * This tool converts the oui.txt file to a PHP array.
  *
- * @category   Apps
- * @package    DHCP
- * @subpackage Scripts
+ * @category   apps
+ * @package    dhcp
+ * @subpackage scripts
  * @author     ClearFoundation <developer@clearfoundation.com>
  * @copyright  2011 ClearFoundation
  * @license    http://www.gnu.org/copyleft/gpl.html GNU General Public License version 3 or later

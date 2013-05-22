@@ -3,9 +3,9 @@
 /**
  * Dnsmasq DHCP class.
  *
- * @category   Apps
- * @package    DHCP
- * @subpackage Libraries
+ * @category   apps
+ * @package    dhcp
+ * @subpackage libraries
  * @author     ClearFoundation <developer@clearfoundation.com>
  * @copyright  2003-2011 ClearFoundation
  * @license    http://www.gnu.org/copyleft/lgpl.html GNU Lesser General Public License version 3 or later
@@ -94,9 +94,9 @@ clearos_load_library('network/Ethers_Not_Found_Exception');
  * This class only deals with the DHCP aspects of Dnsmasq.  Please see the
  * DNS app for other Dnsmasq methods.
  *
- * @category   Apps
- * @package    DHCP
- * @subpackage Libraries
+ * @category   apps
+ * @package    dhcp
+ * @subpackage libraries
  * @author     ClearFoundation <developer@clearfoundation.com>
  * @copyright  2003-2011 ClearFoundation
  * @license    http://www.gnu.org/copyleft/lgpl.html GNU Lesser General Public License version 3 or later
