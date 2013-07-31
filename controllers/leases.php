@@ -83,12 +83,11 @@ class Leases extends ClearOS_Controller
         //-------------------
 
         if ($this->input->post('submit') && ($form_ok === TRUE)) {
-            try {
-                $this->dnsmasq->add_static_lease(
-                    $this->input->post('mac'),
-                    $this->input->post('ip')
-                );
+            // Allow dashes in the MAC, but convert to colon
+            $mac = preg_replace('/-/', ':', $this->input->post('mac'));
 
+            try {
+                $this->dnsmasq->add_static_lease($mac, $this->input->post('ip'));
                 $this->dnsmasq->reset(TRUE);
 
                 // Return to summary page with status message
@@ -133,12 +132,8 @@ class Leases extends ClearOS_Controller
 
         if ($this->input->post('submit') && ($form_ok === TRUE)) {
             try {
-                $this->dnsmasq->update_lease(
-                    $this->input->post('mac'),
-                    $this->input->post('ip'),
-                    $this->input->post('type')
-                );
-
+                $mac = preg_replace('/-/', ':', $this->input->post('mac'));
+                $this->dnsmasq->update_lease($mac, $this->input->post('ip'), $this->input->post('type'));
                 $this->dnsmasq->reset(TRUE);
 
                 // Return to summary page with status message

@@ -1234,7 +1234,7 @@ class Dnsmasq extends Daemon
     {
         clearos_profile(__METHOD__, __LINE__);
 
-        if (! Network_Utils::is_valid_mac($mac))
+        if (! Network_Utils::is_valid_mac($mac, TRUE))
             return lang('network_mac_address_invalid');
 
         if ($check_uniqueness && $this->exists_lease($mac))
