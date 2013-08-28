@@ -1,7 +1,7 @@
 
 Name: app-dhcp
 Epoch: 1
-Version: 1.4.70
+Version: 1.5.0
 Release: 1%{dist}
 Summary: DHCP Server
 License: GPLv3
