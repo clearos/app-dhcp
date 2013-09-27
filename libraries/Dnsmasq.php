@@ -1489,6 +1489,11 @@ class Dnsmasq extends Daemon
             try {
                 $ethinfo = new Iface($eth);
                 $ethip = $ethinfo->get_live_ip();
+
+                // Bail with "invalid" if there's no IP configured
+                if (empty($ethip))
+                    continue;
+
                 $ethnetmask = $ethinfo->get_live_netmask();
                 $ethnetwork = Network_Utils::get_network_address($ethip, $ethnetmask);
 
