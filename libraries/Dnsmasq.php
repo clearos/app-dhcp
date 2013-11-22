@@ -112,6 +112,7 @@ class Dnsmasq extends Daemon
     const FILE_DHCP = '/etc/dnsmasq.d/dhcp.conf';
     const FILE_CONFIG = '/etc/dnsmasq.conf';
     const FILE_LEASES = '/var/lib/dnsmasq/dnsmasq.leases';
+    const FILE_WPAD = '/var/clearos/wpad/wpad.dat';
 
     const DEFAULT_LEASETIME = '12'; // in hours
     const CONSTANT_UNLIMITED_LEASE = 'infinite';
@@ -127,6 +128,7 @@ class Dnsmasq extends Daemon
     const OPTION_NETBIOS_NODE_TYPE = 46;
     const OPTION_TFTP = 66;
     const OPTION_NTP = 42;
+    const OPTION_WPAD = 252;
 
     ///////////////////////////////////////////////////////////////////////////////
     // V A R I A B L E S
@@ -191,12 +193,13 @@ class Dnsmasq extends Daemon
      * @param string  $wins       WINS server
      * @param string  $tftp       TFTP server
      * @param string  $ntp        NTP server
+     * @param string  $wpad       WPAD server
      *
      * @return void
      * @throws Engine_Exception, Validation_Exception
      */
 
-    public function add_subnet($interface, $start, $end, $lease_time = self::DEFAULT_LEASETIME, $gateway = NULL, $dns_list = NULL, $wins = NULL, $tftp = NULL, $ntp = NULL)
+    public function add_subnet($interface, $start, $end, $lease_time = self::DEFAULT_LEASETIME, $gateway = NULL, $dns_list = NULL, $wins = NULL, $tftp = NULL, $ntp = NULL, $wpad = NULL)
     {
         clearos_profile(__METHOD__, __LINE__);
 
@@ -275,6 +278,9 @@ class Dnsmasq extends Daemon
 
         if ($ntp)
             $this->config['dhcp-option']['line'][++$option_count] = "$interface," . self::OPTION_NTP . ",$ntp";
+
+        if ($wpad)
+            $this->config['dhcp-option']['line'][++$option_count] = "$interface," . self::OPTION_WPAD . ",$wpad";
 
         $this->_save_config();
     }
@@ -600,6 +606,7 @@ class Dnsmasq extends Daemon
         $subnet['wins'] = isset($subnets[$iface]['wins']) ? $subnets[$iface]['wins'] : '';
         $subnet['tftp'] = isset($subnets[$iface]['tftp']) ? $subnets[$iface]['tftp'] : '';
         $subnet['ntp'] = isset($subnets[$iface]['ntp']) ? $subnets[$iface]['ntp'] : '';
+        $subnet['wpad'] = isset($subnets[$iface]['wpad']) ? $subnets[$iface]['wpad'] : '';
         $subnet['lease_time'] = isset($subnets[$iface]['lease_time']) ? $subnets[$iface]['lease_time'] : '';
 
         return $subnet;
@@ -807,12 +814,13 @@ class Dnsmasq extends Daemon
      * @param string  $wins       WINS server
      * @param string  $tftp       TFTP server
      * @param string  $ntp        NTP server
+     * @param string  $wpad       WPAD server
      *
      * @return void
      * @throws Engine_Exception, Validation_Exception
      */
 
-    public function update_subnet($interface, $start, $end, $lease_time = self::DEFAULT_LEASETIME, $gateway = NULL, $dns_list = NULL, $wins = NULL, $tftp = NULL, $ntp = NULL)
+    public function update_subnet($interface, $start, $end, $lease_time = self::DEFAULT_LEASETIME, $gateway = NULL, $dns_list = NULL, $wins = NULL, $tftp = NULL, $ntp = NULL, $wpad = NULL)
     {
         clearos_profile(__METHOD__, __LINE__);
 
@@ -829,6 +837,9 @@ class Dnsmasq extends Daemon
         if (! empty($ntp))
             Validation_Exception::is_valid($this->validate_ntp_server($ntp));
 
+        if (! empty($wpad))
+            Validation_Exception::is_valid($this->validate_wpad_server($wpad));
+
         if (! empty($dns_list))
             Validation_Exception::is_valid($this->validate_dns_server_list($dns_list));
             
@@ -838,7 +849,7 @@ class Dnsmasq extends Daemon
         if ($this->subnet_exists($interface))
             $this->delete_subnet($interface);
 
-        $this->add_subnet($interface, $start, $end, $lease_time, $gateway, $dns_list, $wins, $tftp, $ntp);
+        $this->add_subnet($interface, $start, $end, $lease_time, $gateway, $dns_list, $wins, $tftp, $ntp, $wpad);
     }
 
     /**
@@ -1306,6 +1317,22 @@ class Dnsmasq extends Daemon
     }
 
     /**
+     * Validates WPAD server setting.
+     *
+     * @param string $wpad WPAD server
+     *
+     * @return string error message if WPAD server is invalid
+     */
+
+    public function validate_wpad_server($wpad)
+    {
+        clearos_profile(__METHOD__, __LINE__);
+
+        if (!preg_match('/^http:\/\/.*\/wpad.dat/', $wpad))
+            return lang('dhcp_wpad_server_invalid');
+    }
+
+    /**
      * Validates TFTP server setting.
      *
      * @param string $tftp TFTP server
@@ -1454,6 +1481,9 @@ class Dnsmasq extends Daemon
                     $value = preg_replace("/\"/", "", $items[2]);
                 } else if ($items[1] == self::OPTION_NTP) {
                     $key = "ntp";
+                    $value = $items[2];
+                } else if ($items[1] == self::OPTION_WPAD) {
+                    $key = "wpad";
                     $value = $items[2];
                 } else if (count($items) == 2) {
                     // Skip over dhcp-option tags without subnet definition

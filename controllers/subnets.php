@@ -181,6 +181,7 @@ class Subnets extends ClearOS_Controller
         $this->form_validation->set_policy('wins', 'dhcp/Dnsmasq', 'validate_wins_server');
         $this->form_validation->set_policy('tftp', 'dhcp/Dnsmasq', 'validate_tftp_server');
         $this->form_validation->set_policy('ntp', 'dhcp/Dnsmasq', 'validate_ntp_server');
+        $this->form_validation->set_policy('wpad', 'dhcp/Dnsmasq', 'validate_wpad_server');
         $form_ok = $this->form_validation->run();
 
         // Handle form submit
@@ -195,6 +196,7 @@ class Subnets extends ClearOS_Controller
             $subnet['wins'] = $this->input->post('wins');
             $subnet['tftp'] = $this->input->post('tftp');
             $subnet['ntp'] = $this->input->post('ntp');
+            $subnet['wpad'] = $this->input->post('wpad');
             $subnet['lease_time'] = $this->input->post('lease_time');
             $subnet['dns'] = array(
                 $this->input->post('dns1'),
@@ -213,7 +215,8 @@ class Subnets extends ClearOS_Controller
                         $subnet['dns'],
                         $subnet['wins'],
                         $subnet['tftp'],
-                        $subnet['ntp']
+                        $subnet['ntp'],
+                        $subnet['wpad']
                     );
 
                 } else {
@@ -226,7 +229,8 @@ class Subnets extends ClearOS_Controller
                         $subnet['dns'],
                         $subnet['wins'],
                         $subnet['tftp'],
-                        $subnet['ntp']
+                        $subnet['ntp'],
+                        $subnet['wpad']
                     );
                 }
 
@@ -266,6 +270,7 @@ class Subnets extends ClearOS_Controller
         $data['wins'] = (isset($subnet['wins'])) ? $subnet['wins'] : '';
         $data['tftp'] = (isset($subnet['tftp'])) ? $subnet['tftp'] : '';
         $data['ntp'] = (isset($subnet['ntp'])) ? $subnet['ntp'] : '';
+        $data['wpad'] = (isset($subnet['wpad'])) ? $subnet['wpad'] : '';
         $data['lease_time'] = (isset($subnet['lease_time'])) ? $subnet['lease_time'] : '';
 
         $data['lease_times'] = array();

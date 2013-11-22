@@ -81,6 +81,7 @@ echo field_input('dns3', $dns3, lang('dhcp_dns') . " #3");
 echo field_input('wins', $wins, lang('dhcp_wins'));
 echo field_input('tftp', $tftp, lang('dhcp_tftp'));
 echo field_input('ntp', $ntp, lang('dhcp_ntp'));
+echo field_input('wpad', $wpad, lang('dhcp_wpad'), FALSE, array('width' => '220px'));
 
 echo field_button_set($buttons);
 
