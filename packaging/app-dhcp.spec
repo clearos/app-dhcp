@@ -21,9 +21,7 @@ License: LGPLv3
 Group: ClearOS/Libraries
 Requires: app-base-core
 Requires: app-network-core
-Requires: dhcping
 Requires: dnsmasq >= 2.48
-Requires: iptables
 
 %description core
 The DHCP Server app provides automatic IP configuration to devices on your network.
@@ -38,7 +36,6 @@ This package provides the core API and libraries.
 mkdir -p -m 755 %{buildroot}/usr/clearos/apps/dhcp
 cp -r * %{buildroot}/usr/clearos/apps/dhcp/
 
-install -D -m 0755 packaging/dhcptest %{buildroot}/usr/sbin/dhcptest
 
 %post
 logger -p local6.notice -t installer 'app-dhcp - installing'
@@ -76,9 +73,7 @@ exit 0
 %files core
 %defattr(-,root,root)
 %exclude /usr/clearos/apps/dhcp/packaging
-%exclude /usr/clearos/apps/dhcp/tests
 %dir /usr/clearos/apps/dhcp
 /usr/clearos/apps/dhcp/deploy
 /usr/clearos/apps/dhcp/language
 /usr/clearos/apps/dhcp/libraries
-/usr/sbin/dhcptest

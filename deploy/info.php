@@ -40,14 +40,5 @@ $app['requires'] = array(
 
 $app['core_requires'] = array(
     'app-network-core',
-    'dhcping',
     'dnsmasq >= 2.48',
-    'iptables',
-);
-
-$app['core_file_manifest'] = array(
-    'dhcptest' => array( 
-        'target' => '/usr/sbin/dhcptest',
-        'mode' => '0755',
-    ),
 );
