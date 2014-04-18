@@ -42,3 +42,5 @@ $lang['dhcp_tftp_server_invalid'] = 'TFTP-servern är ogiltig.';
 $lang['dhcp_vendor'] = 'Tillverkare';
 $lang['dhcp_wins'] = 'WINS';
 $lang['dhcp_wins_server_invalid'] = 'WINS-servern är ogiltig.';
+$lang['dhcp_wpad'] = 'WPAD';
+$lang['dhcp_wpad_server_invalid'] = 'WPAD server is invalid (eg. http://wpad.example.com/wpad.dat).';
