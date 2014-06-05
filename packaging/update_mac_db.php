@@ -43,7 +43,7 @@ echo "\$mac_database = array(\n";
 foreach ($contents as $line) {
     $matches = array();
 
-    if (preg_match("/^([0-9A-F]{1,2}-[0-9A-F]{1,2}-[0-9A-F]{1,2})\s+(\(.*\))\s+(.*)/", $line, $matches)) {
+    if (preg_match("/^\s*([0-9A-F]{1,2}-[0-9A-F]{1,2}-[0-9A-F]{1,2})\s+(\(.*\))\s+(.*)/", $line, $matches)) {
         $mac_prefix = preg_replace('/-/', ':', $matches[1]);
         $company = preg_replace("/'/", "\'", $matches[3]);
         $company = ucwords(strtolower($company));
