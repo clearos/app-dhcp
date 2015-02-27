@@ -36,6 +36,8 @@ This package provides the core API and libraries.
 mkdir -p -m 755 %{buildroot}/usr/clearos/apps/dhcp
 cp -r * %{buildroot}/usr/clearos/apps/dhcp/
 
+install -d -m 0755 %{buildroot}/var/clearos/dhcp
+install -d -m 0755 %{buildroot}/var/clearos/dhcp/backup
 
 %post
 logger -p local6.notice -t installer 'app-dhcp - installing'
@@ -74,6 +76,8 @@ exit 0
 %defattr(-,root,root)
 %exclude /usr/clearos/apps/dhcp/packaging
 %dir /usr/clearos/apps/dhcp
+%dir /var/clearos/dhcp
+%dir /var/clearos/dhcp/backup
 /usr/clearos/apps/dhcp/deploy
 /usr/clearos/apps/dhcp/language
 /usr/clearos/apps/dhcp/libraries

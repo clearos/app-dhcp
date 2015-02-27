@@ -1,0 +1,13 @@
+#!/bin/sh
+
+TIMESTAMP=`date "+%b-%d-%Y-%T"`
+
+# Remove DHCP configuration
+#--------------------------
+
+if [ -e "/etc/dnsmasq.d/dhcp.conf" ]; then
+    logger -p local6.notice -t installer "app-dhcp-core - removing DHCP configuration"
+    mv /etc/dnsmasq.d/dhcp.conf /var/clearos/dhcp/backup/dhcp.conf.$TIMESTAMP
+
+    /sbin/service dnsmasq condrestart
+fi

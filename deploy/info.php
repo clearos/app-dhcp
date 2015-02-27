@@ -42,3 +42,13 @@ $app['core_requires'] = array(
     'app-network-core',
     'dnsmasq >= 2.48',
 );
+
+$app['core_directory_manifest'] = array(
+    '/var/clearos/dhcp' => array(),
+    '/var/clearos/dhcp/backup' => array(),
+);
+
+$app['delete_dependency'] = array(
+    'app-dhcp-core',
+    'app-dhcp',
+);
