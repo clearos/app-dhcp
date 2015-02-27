@@ -4,6 +4,7 @@ $lang['dhcp_app_description'] = 'The DHCP Server app provides automatic IP confi
 $lang['dhcp_app_name'] = 'DHCP Server';
 $lang['dhcp_authoritative'] = 'Authoritative';
 $lang['dhcp_authoritative_state_invalid'] = 'Authoritative state is invalid.';
+$lang['dhcp_dhcp'] = 'DHCP';
 $lang['dhcp_dns'] = 'DNS';
 $lang['dhcp_dns_server_invalid'] = 'DNS server is invalid.';
 $lang['dhcp_dns_server_list_invalid'] = 'DNS server list is invalid.';

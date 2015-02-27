@@ -100,11 +100,13 @@ class Subnets extends ClearOS_Controller
      * @return view
      */
 
-    function delete($iface, $network)
+    function delete($iface)
     {
+        $this->lang->load('dhcp');
+
         $confirm_uri = '/app/dhcp/subnets/destroy/' . $iface;
         $cancel_uri = '/app/dhcp/subnets';
-        $items = array($iface . ' - ' . $network);
+        $items = array($iface . ' - ' . lang('dhcp_dhcp'));
 
         $this->page->view_confirm_delete($confirm_uri, $cancel_uri, $items);
     }
