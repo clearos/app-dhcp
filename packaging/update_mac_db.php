@@ -5,7 +5,7 @@
  * MAC address update.
  *
  * A list of MAC addresses is publicly available from 
- * http://standards.ieee.org/develop/regauth/oui/public.html.
+ * http://standards-oui.ieee.org/oui.txt.
  * This tool converts the oui.txt file to a PHP array.
  *
  * @category   apps
@@ -37,7 +37,6 @@
 $contents = preg_split("/\n/", file_get_contents('oui.txt'));
 
 echo "<?php\n\n";
-echo "// See http://standards.ieee.org/develop/regauth/oui/public.html\n\n";
 echo "\$mac_database = array(\n";
 
 foreach ($contents as $line) {
