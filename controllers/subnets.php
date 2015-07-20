@@ -7,7 +7,7 @@
  * @package    dhcp
  * @subpackage controllers
  * @author     ClearFoundation <developer@clearfoundation.com>
- * @copyright  2011 ClearFoundation
+ * @copyright  2011-2015 ClearFoundation
  * @license    http://www.gnu.org/copyleft/gpl.html GNU General Public License version 3 or later
  * @link       http://www.clearfoundation.com/docs/developer/apps/dhcp/
  */
@@ -40,7 +40,7 @@
  * @package    dhcp
  * @subpackage controllers
  * @author     ClearFoundation <developer@clearfoundation.com>
- * @copyright  2011 ClearFoundation
+ * @copyright  2011-2015 ClearFoundation
  * @license    http://www.gnu.org/copyleft/gpl.html GNU General Public License version 3 or later
  * @link       http://www.clearfoundation.com/docs/developer/apps/dhcp/
  */
@@ -276,6 +276,10 @@ class Subnets extends ClearOS_Controller
         $data['lease_time'] = (isset($subnet['lease_time'])) ? $subnet['lease_time'] : '';
 
         $data['lease_times'] = array();
+        $data['lease_times'][1] = 1 . " " . lang('base_hour');
+        $data['lease_times'][2] = 2 . " " . lang('base_hours');
+        $data['lease_times'][4] = 4 . " " . lang('base_hours');
+        $data['lease_times'][6] = 6 . " " . lang('base_hours');
         $data['lease_times'][12] = 12 . " " . lang('base_hours');
         $data['lease_times'][24] = 24 . " " . lang('base_hours');
         $data['lease_times'][48] = 2 . " " . lang('base_days');
