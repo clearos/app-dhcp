@@ -6,6 +6,7 @@ $lang['dhcp_app_description'] = 'DHCP-servern ger automatiskt en IP-konfiguratio
 $lang['dhcp_app_name'] = 'DHCP-server';
 $lang['dhcp_authoritative'] = 'Auktoritativ';
 $lang['dhcp_authoritative_state_invalid'] = 'Auktoritativa statusen är ogiltig.';
+$lang['dhcp_dhcp'] = 'DHCP';
 $lang['dhcp_dns'] = 'DNS';
 $lang['dhcp_dns_server_invalid'] = 'DNS-server är ogiltig.';
 $lang['dhcp_dns_server_list_invalid'] = 'Listan över DNS-servrar är ogiltig.';

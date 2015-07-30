@@ -6,6 +6,7 @@ $lang['dhcp_app_description'] = 'Приложение DHCP-сервер обес
 $lang['dhcp_app_name'] = 'DHCP Сервер';
 $lang['dhcp_authoritative'] = 'Авторитетный';
 $lang['dhcp_authoritative_state_invalid'] = 'Авторитетное состояние - инвалид.';
+$lang['dhcp_dhcp'] = 'DHCP';
 $lang['dhcp_dns'] = 'DNS';
 $lang['dhcp_dns_server_invalid'] = 'DNS-сервер является недействительным.';
 $lang['dhcp_dns_server_list_invalid'] = 'Список DNS-серверов является недействительным.';
