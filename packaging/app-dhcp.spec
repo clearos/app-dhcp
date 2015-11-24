@@ -1,7 +1,7 @@
 
 Name: app-dhcp
 Epoch: 1
-Version: 2.1.7
+Version: 2.2.0
 Release: 1%{dist}
 Summary: DHCP Server
 License: GPLv3
@@ -51,8 +51,6 @@ fi
 
 [ -x /usr/clearos/apps/dhcp/deploy/upgrade ] && /usr/clearos/apps/dhcp/deploy/upgrade
 
-
-
 exit 0
 
 %preun
@@ -65,8 +63,6 @@ if [ $1 -eq 0 ]; then
     logger -p local6.notice -t installer 'app-dhcp-core - uninstalling'
     [ -x /usr/clearos/apps/dhcp/deploy/uninstall ] && /usr/clearos/apps/dhcp/deploy/uninstall
 fi
-
-
 
 exit 0
 

@@ -1595,7 +1595,7 @@ class Dnsmasq extends Daemon
 
         foreach ($this->config as $key => $details) {
             foreach ($details['line'] as $lineno => $value) {
-                if ($value)
+                if ($value || ($value === '0'))
                     $line = "$key=$value";
                 else
                     $line = "$key";
