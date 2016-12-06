@@ -35,9 +35,7 @@
 ///////////////////////////////////////////////////////////////////////////////
 
 $contents = preg_split("/\n/", file_get_contents('oui.txt'));
-
-echo "<?php\n\n";
-echo "\$mac_database = array(\n";
+$macs = array();
 
 foreach ($contents as $line) {
     $matches = array();
@@ -47,8 +45,15 @@ foreach ($contents as $line) {
         $company = preg_replace("/'/", "\'", $matches[3]);
         $company = ucwords(strtolower($company));
 
-        echo "'" . $mac_prefix . "' => '" . $company . "',\n";
+        $macs[$mac_prefix] = $company; 
     }
 }
+
+ksort($macs);
+echo "<?php\n\n";
+echo "\$mac_database = array(\n";
+
+foreach ($macs as $prefix => $company)
+    echo "'" . $prefix . "' => '" . $company . "',\n";
 
 echo ");\n";
