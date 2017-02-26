@@ -1,7 +1,7 @@
 
 Name: app-dhcp
 Epoch: 1
-Version: 2.3.0
+Version: 2.3.20
 Release: 1%{dist}
 Summary: DHCP Server
 License: GPLv3
@@ -75,6 +75,7 @@ exit 0
 %files core
 %defattr(-,root,root)
 %exclude /usr/clearos/apps/dhcp/packaging
+%exclude /usr/clearos/apps/dhcp/unify.json
 %dir /usr/clearos/apps/dhcp
 %dir /var/clearos/dhcp
 %dir /var/clearos/dhcp/backup
